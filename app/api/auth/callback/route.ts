@@ -11,8 +11,6 @@ export async function GET(request: NextRequest) {
   // Fetch user role
   const res = await apiRequest('/auth/me')
 
-  console.log('auth/me response-res:', res)
-
   if (!res.ok) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
