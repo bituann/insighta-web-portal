@@ -1,11 +1,12 @@
 import { apiRequest } from '@/lib/api'
-import { Users, TrendingUp, Globe, UserCheck } from 'lucide-react'
+import { Profile } from '@/lib/types'
+import { Users, Globe, UserCheck } from 'lucide-react'
 
 async function getProfiles() {
   return apiRequest('/api/profiles?limit=50&page=1')
 }
 
-function computeMetrics(profiles: any[]) {
+function computeMetrics(profiles: Profile[]) {
   const total = profiles.length
   const male = profiles.filter(p => p.gender === 'male').length
   const female = profiles.filter(p => p.gender === 'female').length

@@ -2,6 +2,7 @@ import { apiRequest } from '@/lib/api'
 import Link from 'next/link'
 import { ProfileFilters } from '@/components/ProfileFilters'
 import { Pagination } from '@/components/Pagination'
+import { Profile } from '@/lib/types'
 
 interface SearchParams {
   [key: string]: string | undefined
@@ -38,7 +39,6 @@ export default async function ProfilesPage({
   const profiles = data.data ?? []
   const total = data.total ?? 0
   const page = Number(params.page ?? 1)
-  const limit = Number(params.limit ?? 10)
   const totalPages = data.total_pages ?? 0
 
   return (
@@ -60,7 +60,7 @@ export default async function ProfilesPage({
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {profiles.map((p: any) => (
+            {profiles.map((p: Profile) => (
               <tr key={p.id} className="hover:bg-gray-50 transition">
                 <td className="px-6 py-4 font-medium text-gray-900">{p.name}</td>
                 <td className="px-6 py-4 capitalize text-gray-600">{p.gender}</td>

@@ -2,6 +2,7 @@ import { apiRequest } from '@/lib/api'
 import Link from 'next/link'
 import { SearchInput } from '@/components/SearchInput'
 import { Pagination } from '@/components/Pagination'
+import { Profile } from '@/lib/types'
 
 async function searchProfiles(query: string, page: string) {
   if (!query) return { data: [], total: 0 }
@@ -31,7 +32,7 @@ export default async function SearchPage({
 
       {query && (
         <p className="text-sm text-white-500">
-          {total} result{total !== 1 ? 's' : ''} for "{query}"
+          {total} result{total !== 1 ? 's' : ''} for &quot;{query}&quot;
         </p>
       )}
 
@@ -39,7 +40,7 @@ export default async function SearchPage({
         <>
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 
                           divide-y divide-gray-100">
-            {results.map((p: any) => (
+            {results.map((p: Profile) => (
               <Link
                 key={p.id}
                 href={`/profiles/${p.id}`}
