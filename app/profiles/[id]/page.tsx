@@ -1,7 +1,7 @@
 import { apiRequest } from '@/lib/api'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import { BackButton } from '@/components/BackButton'
+import { Profile } from '@/lib/types'
 
 export default async function ProfileDetailPage({ 
   params 
@@ -9,12 +9,13 @@ export default async function ProfileDetailPage({
   params: Promise<{ id: string }> 
 }) {
   const { id } = await params
-  let profile: any
+  let profile: Profile
 
   try {
     profile = (await apiRequest(`/api/profiles/${id}`)).data
-  } catch (e: any) {
-    if (e.status === 404) notFound()
+  } catch (e: unknown) {
+    const err = e as { status: number }
+    if (err.status === 404) notFound()
     throw e
   }
 

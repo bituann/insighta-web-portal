@@ -1,5 +1,6 @@
 import { LogoutButton } from '@/components/LogoutButton'
 import { apiRequest } from '@/lib/api'
+import Image from 'next/image'
 
 export default async function AccountPage() {
   const user = (await apiRequest('/auth/me')).data
@@ -11,10 +12,12 @@ export default async function AccountPage() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 
                       flex items-center gap-4">
         {user.avatar_url && (
-          <img
+          <Image
             src={user.avatar_url}
             alt={user.username}
-            className="w-16 h-16 rounded-full"
+            width={64}
+            height={64}
+            className="rounded-full"
           />
         )}
         <div>
