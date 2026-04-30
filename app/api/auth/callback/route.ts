@@ -18,9 +18,10 @@ export async function GET(request: NextRequest) {
   }
 
   const data = await res.json()
+  console.log(data)
 
   // Fetch role
-  const meRes = await fetch(`${process.env.API_BASE_URL}/auth/me`, {
+  const meRes = await fetch(`${process.env.API_BASE_URL}/api/users/me`, {
     headers: {
       Authorization: `Bearer ${data.access_token}`,
       'X-API-Version': '1',
