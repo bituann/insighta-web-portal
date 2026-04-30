@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const PUBLIC_ROUTES = ['/login', '/auth/callback']
+const PUBLIC_ROUTES = ['/login', '/auth/callback', '/api/auth']
 
 export function proxy(request: NextRequest) {
   const token = request.cookies.get('access_token')
