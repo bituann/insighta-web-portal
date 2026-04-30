@@ -3,7 +3,7 @@ import { apiRequest } from '@/lib/api'
 import Image from 'next/image'
 
 export default async function AccountPage() {
-  const user = (await apiRequest('/auth/me')).data
+  const user = (await apiRequest('/api/users/me')).data
 
   return (
     <div className="space-y-6 max-w-lg">
